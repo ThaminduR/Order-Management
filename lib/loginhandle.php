@@ -1,6 +1,6 @@
 <?php
 	include("dbconnection.php");
-
+   
 	$conn=DBConnection::connectDB();
 
 session_start();
@@ -12,7 +12,7 @@ session_start();
    }
 
    $usrname= $_POST['username'];
-   $pwd=md5($_POST['pass']);
+   $pwd=$_POST['pass'];
 
    $result = $conn->query("SELECT * FROM tbl_customer WHERE cus_uname='$usrname' AND password='$pwd'");
 
@@ -20,7 +20,7 @@ session_start();
    	$_SESSION['err'] = true;
    	header("Location:../myaccount.php");
    }else{
-   	$_SESSION['cus_info'] =$result->fetch_assoc();
+      $_SESSION['cus_info'] =$result->fetch_assoc();
    	header("Location:../index.php");
 
      } 
@@ -46,4 +46,3 @@ session_start();
 }
 
 // SELECT COUNT(*) FROM `tbl_cart` WHERE cus_id=
-?>

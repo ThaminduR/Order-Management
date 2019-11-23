@@ -22,7 +22,6 @@ require_once("lib/clothehandle.php");
 						<button type="button" id="searchbtn"><i class="fa fa-search" aria-hidden="true"></i></button>
 						<a href="myaccount.php">My Account</a>
 						<a href="wishlist.php">Wish List</a>
-						<a href="checkout.php">Check Out</a>
 						<a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 					</div>
 				</div>
