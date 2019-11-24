@@ -17,10 +17,19 @@ if (isset($_SESSION['err'])) {
 ?>
 <?php
 if(!(isset($cus_info))){
-
-
-
 ?>
+
+<script type="text/javascript">
+		Swal.fire({
+
+			position:'top-end'
+			icon: 'error',
+			title: 'Oops...',
+			text: 'You are not logged in!',
+		})
+	</script>
+
+
 <div class="header container-fluid">
 	<div class="row">
 		<div class="col-sm-6">
@@ -329,12 +338,31 @@ if(!(isset($cus_info))){
 ?>
 
 <?php
+
+
 if(isset($cus_info)){
 
 
 
 
 ?>
+
+
+
+<script type="text/javascript">
+		Swal.fire({
+
+			type:'fire',
+			position:'top-end',
+			icon: 'error',
+			title: 'Oops...',
+			text: 'You are not logged in!',
+		})
+	</script>
+
+
+
+
 <?php
 
 }
