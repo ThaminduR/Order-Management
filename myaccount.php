@@ -14,7 +14,12 @@
 	unset($_SESSION['err']);
 	}
 ?>
+<?php
+if(!(isset($cus_info))){
 
+
+
+?>
 <div class="header container-fluid">
 	<div class="row">
 		<div class="col-sm-6">
@@ -301,7 +306,22 @@ $("#register").submit(function(){
  	})
  </script>
  -->
+<?php
+}
+?>
 
+<?php
+if(isset($cus_info)){
+
+
+
+
+?>
+<?php
+
+}
+
+?>
 
 <?php
 	include("common/footer.php");
