@@ -20,7 +20,7 @@ session_start();
    	$_SESSION['err'] = true;
    	header("Location:../myaccount.php");
    }else{
-      $_SESSION['cus_info'] =$result->fetch_assoc();
+      $_SESSION["cus_info"] =$result->fetch_assoc();
    	header("Location:../index.php");
 
      } 

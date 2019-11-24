@@ -29,6 +29,14 @@ require_once("lib/carthandle.php");
 							<span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
 																					echo CountCart($cus_info['cus_id']);
 																				} ?></span></a>
+						<a href="lib/logout.php">
+							<?php
+							if (isset($_SESSION['cus_info'])) {
+								echo("Log out");
+							}
+
+							?>
+						</a>
 					</div>
 				</div>
 			</div>

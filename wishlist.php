@@ -17,6 +17,17 @@ require('lib/carthandle.php');
                         <a href="myaccount.php">My Account</a>
                         <a href="wishlist.php">Wish List</a>
                         <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
+                                                                                echo CountCart($cus_info['cus_id']);
+                                                                            } ?></span>
+                        <a href="lib/logout.php">
+                            <?php
+                            if (isset($_SESSION['cus_info'])) {
+                                echo ("Log out");
+                            }
+
+                            ?>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -76,11 +87,14 @@ require('lib/carthandle.php');
     <div class="shopping-cart container-fluid">
         <div class="row">
             <div class="col-md-12 col-xs-12">
+                <?php if (!isset($cus_info)) {
+                    echo ("Please Login to add to wishlist !");
+                } ?>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">
-                                <h4>Wishlist<h4>
+                                <h4>Wishlist <h4>
                             </th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -110,8 +124,10 @@ require('lib/carthandle.php');
 
 
                         <?php
-                        $cus_id = $cus_info['cus_id'];
-                        getWish($cus_id);
+                        if (isset($cus_info)) {
+                            $cus_id = $cus_info['cus_id'];
+                            getWish($cus_id);
+                        }
                         ?>
                         <input type="hidden" name="cus_id" id="cus_id" value="<?php echo ($cus_id) ?>">
 
