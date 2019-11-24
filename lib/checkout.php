@@ -28,8 +28,8 @@ if ($nor == 0) {
 }
 
 $cus_id = $_SESSION['cus_info']['cus_id'];
+
 $date  = date("Y-m-d");
-// Empty the cart
 
 $result2 = mysqli_query($conn, "INSERT INTO tbl_order(order_id,order_dot,cus_id) VALUES('$newid','$date','$cus_id');");
 
@@ -43,6 +43,7 @@ if ($nor == 0) {
     echo ("No Items Are selected ! ");
     header("location:../cart.php");
 } else {
+    //Iterate through the cart and add items to the order_product table
     for ($x = 0; $x <= $nor; $x++) {
         $rec = $results->fetch_assoc();
         $product_id = $rec['prod_id'];
@@ -75,11 +76,21 @@ if ($nor == 0) {
 }
 
 
-
+//calculating estimate delivery date 
 $e_date =  date('Y-m-d', strtotime("+7 day"));
 
-
 $result4 = mysqli_query($conn, "INSERT INTO tbl_delivery(deli_id,order_id,deliver_person_id,deli_estimate_date) VALUES('$newid2','$newid','$del_per_id','$e_date')");
+
+//adding delivery status
+$sql5 = "INSERT INTO order_track()";
+
+//adding invoice
+
+
+
+
+
+//emptying the cart of the user
 $result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");
 echo ("Wait until processing is done");
 
