@@ -30,7 +30,7 @@ if ($nor == 0) {
 $cus_id = $_SESSION['cus_info']['cus_id'];
 $date  = date("Y-m-d");
 // Empty the cart
-$result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");   
+$result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");
 $result2 = mysqli_query($conn, "INSERT INTO tbl_order(order_id,order_dot,cus_id) VALUES('$newid','$date','$cus_id');");
 
 
@@ -54,7 +54,10 @@ if ($nor == 0) {
 //Add delivery details
 
 $sql3 = "SELECT delivery_person_id FROM tbl_deliveryemp;";
+$resultid2 = mysqli_query($conn, $sql3);
+$rec = $resultid2->fetch_assoc();
 
+$del_per_id = $rec['delivery_person_id'];
 
 $sql4 = "SELECT deli_id FROM tbl_delivery ORDER BY deli_id DESC LIMIT 1;";
 $resultid3 = mysqli_query($conn, $sql4);
@@ -72,7 +75,11 @@ if ($nor == 0) {
 }
 
 
-$result4 = mysqli_query($conn, "INSERT INTO tbl_delivery(deli_id,order_id,deliver_person_id,deli_estimate_date) VALUES('$newid2','$newid',)");
+$date->modify("+7 day");
+$e_date =  $date->format("Y-m-d");
+
+
+$result4 = mysqli_query($conn, "INSERT INTO tbl_delivery(deli_id,order_id,deliver_person_id,deli_estimate_date) VALUES('$newid2','$newid','$del_per_id','$e_date')");
 echo ("Wait until processing is done");
 
 echo ("<br>");

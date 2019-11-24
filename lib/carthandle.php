@@ -1,5 +1,5 @@
 <?php
-include("dbconnection.php");
+require_once("dbconnection.php");
 
 
 // get cart products start
