@@ -26,6 +26,17 @@ require('lib/carthandle.php');
 						</a>
 						<a href="wishlist.php">Wish List</a>
 						<a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+						<span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
+																				echo CountCart($cus_info['cus_id']);
+																			} ?></span>
+						<a href="lib/logout.php">
+							<?php
+							if (isset($_SESSION['cus_info'])) {
+								echo ("Log out");
+							}
+
+							?>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -85,6 +96,9 @@ require('lib/carthandle.php');
 	<div class="shopping-cart container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
+				<?php if (!isset($cus_info)) {
+					echo ("Please login to add to cart !");
+				} ?>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -119,24 +133,32 @@ require('lib/carthandle.php');
 
 
 						<?php
-						$cus_id = $cus_info['cus_id'];
-						getCart($cus_id);
+						if (isset($cus_info)) {
+							$cus_id = $cus_info['cus_id'];
+							getCart($cus_id);
+						}
 						?>
 						<input type="hidden" name="cus_id" id="cus_id" value="<?php echo ($cus_id) ?>">
 						<tr>
-
 							<td id="Subtotal"><b>Sub Total</b>
 							<td></td>
 							<td>
 								<!-- Subtotal is calculated via total function in cart handler -->
 								<?php
-								$cus_id = $cus_info['cus_id'];
-								Total($cus_id);
+								if (isset($cus_info)) {
+									$cus_id = $cus_info['cus_id'];
+									Total($cus_id);
+								}
 								?>
 							</td>
 							<td>
 								<!-- Button to checkout the cart -->
-								<button type='button' onclick="document.location.href='lib/checkout.php'" class='btn btn-success'>Check Out</button>
+								<?php
+								if (isset($cus_info)) {
+									echo ("<button type='button' onclick='document.location.href='lib/checkout.php'' class='btn btn-success'>Check Out</button>");
+								}
+								?>
+
 							</td>
 							<td></td>
 							</td>

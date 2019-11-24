@@ -1,18 +1,19 @@
 <?php
-	include("common/header.php");
-	// include("lib/registerhandle.php");
-	if(isset($_SESSION['err'])){
-?>
-<script type="text/javascript">
+include("common/header.php");
+require('lib/carthandle.php');
+// include("lib/registerhandle.php");
+if (isset($_SESSION['err'])) {
+	?>
+	<script type="text/javascript">
 		Swal.fire({
-	  		type: 'error',
-	  		title: 'Oops...',
-	  		text: 'Invalid Username or Password!',
-	})
-</script>
+			type: 'error',
+			title: 'Oops...',
+			text: 'Invalid Username or Password!',
+		})
+	</script>
 <?php
 	unset($_SESSION['err']);
-	}
+}
 ?>
 <?php
 if(!(isset($cus_info))){
@@ -24,17 +25,38 @@ if(!(isset($cus_info))){
 	<div class="row">
 		<div class="col-sm-6">
 			<img src="resources/image/logo.png" width="200px" height="200px">
-		</div> 
-		 <div class="col-sm-6"> 
+		</div>
+		<div class="col-sm-6">
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="top-menu">
 						<input type="text" id="searchbox" placeholder="search here">
 						<button type="button" id="searchbtn"><i class="fa fa-search" aria-hidden="true"></i></button>
-						<a href="myaccount.php" class="active-link">My Account</a>
+						<a href="myaccount.php">
+							<?php
+							if (isset($_SESSION['cus_info'])) {
+								echo "Hi, " . $_SESSION['cus_info']['cus_fname'];
+							} else {
+								echo "My Account";
+							}
+
+							?>
+						</a>
 						<a href="wishlist.php">Wish List</a>
-		
+
 						<a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+						<span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
+																				echo CountCart($cus_info['cus_id']);
+																			} ?></span>
+
+						<a href="lib/logout.php">
+							<?php
+							if (isset($_SESSION['cus_info'])) {
+								echo ("Log out");
+							}
+
+							?>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -42,51 +64,49 @@ if(!(isset($cus_info))){
 				<div class="col-sm-12">
 					<div class="main-menu">
 						<div class="dropdown">
-						  <a class="dropbtn" href="clothes.php">CLOTHES</a>
-							  <div class="dropdown-content">
-							    <a href="clothes.php?type=ts">T-Shirt</a>
-							    <a href="clothes.php?type=sh">Shirts</a>
-							    <a href="clothes.php?type=tr">Trousers</a>
-							  </div>
+							<a class="dropbtn" href="clothes.php">CLOTHES</a>
+							<div class="dropdown-content">
+								<a href="clothes.php?type=ts">T-Shirt</a>
+								<a href="clothes.php?type=sh">Shirts</a>
+								<a href="clothes.php?type=tr">Trousers</a>
+							</div>
 						</div>
 
 						<div class="dropdown">
-						  <a class="dropbtn" href="watches.php">WATCHES</a>
-							  <div class="dropdown-content">
-							    <a href="watches.php?brand=ti">Titan</a>
-							    <a href="watches.php?brand=ci">Citizen</a>
-							    <a href="watches.php?brand=ca">Casio</a>
-							  </div>
+							<a class="dropbtn" href="watches.php">WATCHES</a>
+							<div class="dropdown-content">
+								<a href="watches.php?brand=ti">Titan</a>
+								<a href="watches.php?brand=ci">Citizen</a>
+								<a href="watches.php?brand=ca">Casio</a>
+							</div>
 						</div>
 
 						<div class="dropdown">
-						  <a class="dropbtn" href="sports.php">ACCESSORIES</a>
-							 <!--  <div class="dropdown-content">
+							<a class="dropbtn" href="sports.php">ACCESSORIES</a>
+							<!--  <div class="dropdown-content">
 							    <a href="sports.php?type=gt">Gifts and Tech</a>
 							    <a href="sports.php?type=th">Ties and Hats</a>
 							    <a href="sports.php?type=cw">Cold whether</a>
 							  </div> -->
 						</div>
-
-					<!-- 	<div class="dropdown">
+						<!-- 	<div class="dropdown">
 						  <a class="dropbtn" href="shoese.php">SHOESE</a>
 						</div> -->
+						<div class="dropdown">
+							<a class="dropbtn" href="topseller.php">TOP SELLER</a>
+						</div>
 
 						<div class="dropdown">
-						  <a class="dropbtn" href="topseller.php">TOP SELLER</a>
+							<a class="dropbtn" href="bestseller.php">BEST SELLER</a>
 						</div>
 
-						<div class="dropdown">
-						  <a class="dropbtn" href="bestseller.php">BEST SELLER</a>
-						</div>
-						
-						</div>
-						
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 <div class="content">
 	<div class="myaccount-form container-fluid">
@@ -109,10 +129,10 @@ if(!(isset($cus_info))){
 						</div>
 						<div class="clearfix">&nbsp;</div>
 						<div align="right">
-							<button type="submit" id="loginbutton" name="loginbutton" >Login</button>
+							<button type="submit" id="loginbutton" name="loginbutton">Login</button>
 						</div>
 					</form>
-					
+
 				</div>
 			</div>
 
@@ -151,7 +171,7 @@ if(!(isset($cus_info))){
 							<input type="text" name="username" id="uname" placeholder="enter your user name" />
 							<span id="erruname" name="erruname" style="color: red"></span>
 						</div>
-						 <div class="inputbox">
+						<div class="inputbox">
 							<label>Password</label>
 							<input type="password" name="pass" id="regpass" placeholder="enter your Password" />
 							<span id="errregpass" name="errregpass" style="color: red"></span>
@@ -168,134 +188,132 @@ if(!(isset($cus_info))){
 					</form>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
- <script src="resources/jquery/jquery-3.4.1.js"></script>
+<script src="resources/jquery/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+	$("#login").submit(function() {
+		var username = $.trim($("#name").val());
+		var password = $.trim($("#pass").val());
 
-$("#login").submit(function(){
-	var username=$.trim($("#name").val());
-	var password=$.trim($("#pass").val());
+		if (username == "" && password == "") {
+			$("#errusername").text("User name cannot be empty");
+			$("#errpass").text("Password cannot be empty");
+			return false;
+		}
+		if (username == "") {
+			$("#errusername").text("User name cannot be empty");
+			$("#name").focus();
+			return false;
+		}
+		if (password == "") {
+			$("#errpass").text("Password cannot be empty");
+			$("#pass").focus();
+			return false;
+		}
+	});
 
-	if(username=="" && password==""){
-		$("#errusername").text("User name cannot be empty");
-		$("#errpass").text("Password cannot be empty");
-		return false;
-	}
-	if(username==""){
-		$("#errusername").text("User name cannot be empty");
-		$("#name").focus();
-		return false;
-}
-	if(password==""){
-		$("#errpass").text("Password cannot be empty");
-		$("#pass").focus();
-		return false;
-	}
-});
+	$("#name").keypress(function() {
+		$("#errusername").text("");
+	});
+	$("#pass").keypress(function() {
+		$("#errpass").text("");
+	});
 
-	$("#name").keypress(function(){
-        $("#errusername").text("");
-    });
-    $("#pass").keypress(function(){
-        $("#errpass").text("");
-    });
+	$("#register").submit(function() {
+		var fname = $.trim($("#fname").val());
+		var lname = $.trim($("#lname").val());
+		var email = $.trim($("#email").val());
+		var address = $.trim($("#address").val());
+		var mobile = $.trim($("#mobile").val());
+		var uname = $.trim($("#uname").val());
+		var regpass = $.trim($("#regpass").val());
+		var repass = $.trim($("#repass").val());
 
-$("#register").submit(function(){
-	var fname = $.trim($("#fname").val());
-	var lname = $.trim($("#lname").val());
-	var email = $.trim($("#email").val());
-	var address = $.trim( $("#address").val());
-	var mobile = $.trim($("#mobile").val());
-	var uname = $.trim($("#uname").val());
-	var regpass = $.trim($("#regpass").val());
-	var repass = $.trim($("#repass").val());
-
-	if(fname=="" && lname=="" && email=="" && address=="" && mobile=="" && uname=="" && regpass=="" && repass==""){
-		$("#errfname").text("First name cannot be empty");
-		$("#errlname").text("Last name cannot be empty");
-		$("#erremail").text("Email cannot be empty");
-		$("#erraddress").text("Address cannot be empty");
-		$("#errmobile").text("Mobile number cannot be empty");
-		$("#erruname").text("User name cannot be empty");
-		$("#errregpass").text("Password cannot be empty");
-		$("#errrepass").text("Repassword cannot be empty");
-		return false;
-	}
-	if(fname == ""){
-            $("#errfname").text("First name cannot be empty");
-            $("#fname").focus();
-            return false;
-        }
-	if(lname == ""){
-            $("#errlname").text("Last name cannot be empty");
-            $("#lname").focus();
-            return false;
-        }
-	if(email == ""){
-            $("#erremail").text("Email connot be empty");
-            $("#email").focus();
-            return false;
-        }
-	if(address == ""){
-            $("#erraddress").text("Address connot be empty");
-            $("#email").focus();
-            return false;
-        }
-	if(mobile == ""){
-            $("#errmobile").text("Mobile number connot be empty");
-            $("#mobile ").focus();
-            return false;
-        }
-	if(uname == ""){
-            $("#erruname").text("User name connot be empty");
-            $("#uname").focus();
-            return false;
-        }
-	if(regpass == ""){
-            $("#errregpass").text("Password connot be empty");
-            $("#regpass").focus();
-            return false;
-        }
-	if(repass == ""){
-            $("#errrepass").text("Repassword connot be empty");
-            $("#repass").focus();
-            return false;
-        }
-
-	if(regpass!==repass){
-			$("#errrepass").text("Password doesn't match");
+		if (fname == "" && lname == "" && email == "" && address == "" && mobile == "" && uname == "" && regpass == "" && repass == "") {
+			$("#errfname").text("First name cannot be empty");
+			$("#errlname").text("Last name cannot be empty");
+			$("#erremail").text("Email cannot be empty");
+			$("#erraddress").text("Address cannot be empty");
+			$("#errmobile").text("Mobile number cannot be empty");
+			$("#erruname").text("User name cannot be empty");
+			$("#errregpass").text("Password cannot be empty");
+			$("#errrepass").text("Repassword cannot be empty");
+			return false;
+		}
+		if (fname == "") {
+			$("#errfname").text("First name cannot be empty");
+			$("#fname").focus();
+			return false;
+		}
+		if (lname == "") {
+			$("#errlname").text("Last name cannot be empty");
+			$("#lname").focus();
+			return false;
+		}
+		if (email == "") {
+			$("#erremail").text("Email connot be empty");
+			$("#email").focus();
+			return false;
+		}
+		if (address == "") {
+			$("#erraddress").text("Address connot be empty");
+			$("#email").focus();
+			return false;
+		}
+		if (mobile == "") {
+			$("#errmobile").text("Mobile number connot be empty");
+			$("#mobile ").focus();
+			return false;
+		}
+		if (uname == "") {
+			$("#erruname").text("User name connot be empty");
+			$("#uname").focus();
+			return false;
+		}
+		if (regpass == "") {
+			$("#errregpass").text("Password connot be empty");
+			$("#regpass").focus();
+			return false;
+		}
+		if (repass == "") {
+			$("#errrepass").text("Repassword connot be empty");
 			$("#repass").focus();
-			return false; 
+			return false;
 		}
 
-});
-	$("#fname").keypress(function(){
-        $("#errfname").text("");
-    });
-    $("#lname").keypress(function(){
-        $("#errlname").text("");
-    });
-    $("#email").keypress(function(){
-        $("#erremail").text("");
-    });
-    $("#address").keypress(function(){
-        $("#erraddress").text("");
-    });
-    $("#mobile").keypress(function(){
-        $("#errmobile").text("");
-    });
-    $("#uname").keypress(function(){
-        $("#erruname").text("");
-    });
-    $("#regpass").keypress(function(){
-        $("#errregpass").text("");
-    });
-     $("#repass").keypress(function(){
-        $("#errrepass").text("");
-    });
+		if (regpass !== repass) {
+			$("#errrepass").text("Password doesn't match");
+			$("#repass").focus();
+			return false;
+		}
 
+	});
+	$("#fname").keypress(function() {
+		$("#errfname").text("");
+	});
+	$("#lname").keypress(function() {
+		$("#errlname").text("");
+	});
+	$("#email").keypress(function() {
+		$("#erremail").text("");
+	});
+	$("#address").keypress(function() {
+		$("#erraddress").text("");
+	});
+	$("#mobile").keypress(function() {
+		$("#errmobile").text("");
+	});
+	$("#uname").keypress(function() {
+		$("#erruname").text("");
+	});
+	$("#regpass").keypress(function() {
+		$("#errregpass").text("");
+	});
+	$("#repass").keypress(function() {
+		$("#errrepass").text("");
+	});
 </script>
 
 <!-- <script type="text/javascript">
@@ -324,5 +342,5 @@ if(isset($cus_info)){
 ?>
 
 <?php
-	include("common/footer.php");
+include("common/footer.php");
 ?>

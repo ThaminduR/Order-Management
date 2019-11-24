@@ -31,7 +31,17 @@ require_once("lib/tshirthandle.php");
 						<a href="wishlist.php">Wish List</a>
 						<span class="badge badge-danger" id="wish-badge"></span>
 						<a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-						<span class="badge badge-danger" id="cart-badge"></span>
+						<span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
+																				echo CountCart($cus_info['cus_id']);
+																			} ?></span>
+
+						<a href="lib/logout.php">
+							<?php
+							if (isset($_SESSION['cus_info'])) {
+								echo ("Log out");
+							}
+
+							?>
 						</a>
 					</div>
 				</div>
