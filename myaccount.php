@@ -1,7 +1,9 @@
 <?php
 include("common/header.php");
 require('lib/carthandle.php');
+?>
 
+<?php
 // include("lib/registerhandle.php");
 if (isset($_SESSION['err'])) {  //check weather user logged in
 	?>
@@ -26,14 +28,14 @@ if (isset($_SESSION['err'])) {  //check weather user logged in
 if(!(isset($cus_info))){
 ?>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 			Swal.fire({
 				position:'top-end',
 				icon: 'error',
 				title: 'Oops...',
 				text: 'You are not logged in!',
 			})
-		</script>
+		</script>	
 
 
 <div class="header container-fluid">
@@ -344,13 +346,7 @@ if(!(isset($cus_info))){
 ?>
 
 <?php
-
-
 if(isset($cus_info)){
-
-
-
-
 ?>
 
 
@@ -362,9 +358,7 @@ if(isset($cus_info)){
 
 
 <?php
-
 }
-
 ?>
 
 <?php
