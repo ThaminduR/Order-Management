@@ -1,20 +1,42 @@
 <?php
 include("common/header.php");
 require('lib/carthandle.php');
+?>
+
+<?php
 // include("lib/registerhandle.php");
-if (isset($_SESSION['err'])) {
+if (isset($_SESSION['err'])) {  //check weather user logged in
 	?>
-	<script type="text/javascript">
-		Swal.fire({
-			type: 'error',
-			title: 'Oops...',
-			text: 'Invalid Username or Password!',
+<script type="text/javascript">
+	Swal.fire({
+		type: 'error',
+		title: 'Oops...',
+		text: 'Invalid Username or Password! ',
+			
+
 		})
-	</script>
+</script>
+
+
 <?php
 	unset($_SESSION['err']);
 }
 ?>
+
+
+<?php
+if(!(isset($cus_info))){
+?>
+
+<script type="text/javascript">
+			Swal.fire({
+				position:'top-end',
+				icon: 'error',
+				title: 'Oops...',
+				text: 'You are not logged in!',
+			})
+		</script>	
+
 
 <div class="header container-fluid">
 	<div class="row">
@@ -319,7 +341,25 @@ if (isset($_SESSION['err'])) {
  	})
  </script>
  -->
+<?php
+}
+?>
 
+<?php
+if(isset($cus_info)){
+?>
+
+
+
+
+
+
+
+
+
+<?php
+}
+?>
 
 <?php
 include("common/footer.php");
