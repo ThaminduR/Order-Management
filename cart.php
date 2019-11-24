@@ -153,11 +153,9 @@ require('lib/carthandle.php');
 							</td>
 							<td>
 								<!-- Button to checkout the cart -->
-								<?php
-								if (isset($cus_info)) {
-									echo ("<button type='button' onclick='document.location.href='lib/checkout.php'' class='btn btn-success'>Check Out</button>");
-								}
-								?>
+
+								<button type='button' onclick='document.location.href="lib/checkout.php"' class='btn btn-success'>Check Out</button>
+
 
 							</td>
 							<td></td>
