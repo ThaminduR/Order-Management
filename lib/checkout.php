@@ -51,6 +51,7 @@ if ($nor == 0) {
     }
 }
 
+//Add delivery details
 
 $sql3 = "SELECT delivery_person_id FROM tbl_deliveryemp;";
 
