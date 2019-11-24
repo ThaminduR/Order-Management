@@ -5,6 +5,7 @@ if (isset($_GET["type"])) {
 
 require_once("common/header.php");
 require_once("lib/tshirthandle.php");
+require('lib/carthandle.php');
 ?>
 
 <div class="header container-fluid">
