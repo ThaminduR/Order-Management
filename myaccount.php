@@ -22,7 +22,7 @@ if(!(isset($cus_info))){
 
 <?php
 // include("lib/registerhandle.php");
-if (isset($_SESSION['err'])) {  //loggin error
+if (isset($_SESSION['err'])) {  //loggin error corrected
 	?>
 <script type="text/javascript">
 	Swal.fire({
