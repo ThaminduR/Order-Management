@@ -3,9 +3,26 @@ include("common/header.php");
 require('lib/carthandle.php');
 ?>
 
+
+
+
+<?php
+if(!(isset($cus_info))){
+?>
+
+<script type="text/javascript">  //if not logged in fire sweet alert
+			Swal.fire({
+				position:'top-end',
+				icon: 'error',
+				title: 'Oops...',
+				text: 'You are not logged in!',
+			})
+		</script>	
+
+
 <?php
 // include("lib/registerhandle.php");
-if (isset($_SESSION['err'])) {  //check weather user logged in
+if (isset($_SESSION['err'])) {  //loggin error
 	?>
 <script type="text/javascript">
 	Swal.fire({
@@ -19,24 +36,9 @@ if (isset($_SESSION['err'])) {  //check weather user logged in
 
 
 <?php
-	unset($_SESSION['err']);
+	 unset($_SESSION['err']);
 }
 ?>
-
-
-<?php
-if(!(isset($cus_info))){
-?>
-
-<script type="text/javascript">
-			Swal.fire({
-				position:'top-end',
-				icon: 'error',
-				title: 'Oops...',
-				text: 'You are not logged in!',
-			})
-		</script>	
-
 
 <div class="header container-fluid">
 	<div class="row">
