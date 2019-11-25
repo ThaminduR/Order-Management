@@ -109,7 +109,6 @@ $newid_ = "INV" . str_replace("-", "", $cdate) . "_" . str_pad($count, 4, "0", S
 //adding invoice
 $time = date("h:i:s", time());
 $gtot = Total($cus_id);
-echo ($gtot);
 $discount = '0'; //no discount
 $ntot = $gtot;
 $oper = 'Online';
@@ -132,10 +131,17 @@ if ($nor == 0) {
         $product_id = $rec['prod_id'];
         $qty = $rec['qty'];
         $result_tmp = mysqli_query($conn, "SELECT bat_qty_rem FROM tbl_batch WHERE prod_id='$product_id';");
+        $result_temp2 = mysqli_query($conn, "SELECT prod_qty FROM tbl_product WHERE prod_id='$product_id';");
         $record = $result_tmp->fetch_assoc();
+        $record2 = $result_temp2->fetch_assoc();
         $amount = $record['bat_qty_rem'];
+        $amount2 = $record2['prod_qty'];
+
         $new_am = $amount - $qty;
+        $new_am2 = $amount2 - $qty;
+
         $result_final = mysqli_query($conn, "UPDATE tbl_batch SET bat_qty_rem = '$new_am' WHERE prod_id='$product_id';");
+        $result_final2 = mysqli_query($conn, "UPDATE tbl_product SET prod_qty = '$new_am2' WHERE prod_id='$product_id';");
     }
 }
 

@@ -92,7 +92,20 @@ require('lib/carthandle.php');
 
 <!-- Cart Start -->
 <div class="content">
-
+	<div class="toast toastrem" style="position: absolute; top: 0; right: 0;" data-autohide="false">
+		<div class="toast-header">
+			<svg class="rounded mr-2" width="20" height="20" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#007aff" width="100%" height="100%" /></svg>
+			<strong class="mr-auto">Stylish</strong>
+			<small></small>
+			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="toast-body">
+			Product Removed from cart !
+		</div>
+	</div>
 	<div class="shopping-cart container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
@@ -172,6 +185,8 @@ require('lib/carthandle.php');
 	</div>
 </div>
 <!-- Cart End -->
+
+
 <script type="text/javascript">
 	$("#cartdetails").on("click", ".remove", function() { // after load page if click remove run function
 		// $(this).parents("tr").remove();
@@ -187,15 +202,20 @@ require('lib/carthandle.php');
 			},
 			dataType: "text",
 			success: function(result) {
-				location.reload();
+				swal.fire({
+					icon: "success",
+					text: "Item removed sucsessfully !",
+				});
+				setTimeout(location.reload(),1000);
+
 				// alert(result);
 				res = result.split(",");
-				if (res[0] == "0") {
-					swal("Error", res[1], "error");
-				} else if (res[0] == "1") {
-					swal("Success", res[1], "success");
-					// window.location = "viewcustomer.php";
-				}
+				// if (res[0] == "0") {
+				// 	swal("Error", res[1], "error");
+				// } else if (res[0] == "1") {
+				// 	swal("Success", res[1], "success");
+				// 	// window.location = "viewcustomer.php";
+				// }
 
 			},
 			error: function(eobj, etxt, err) {
