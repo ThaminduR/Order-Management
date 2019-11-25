@@ -147,7 +147,7 @@ require('lib/carthandle.php');
 								<?php
 								if (isset($cus_info)) {
 									$cus_id = $cus_info['cus_id'];
-									echo (Total($cus_id));
+									Total($cus_id);
 								}
 								?>
 							</td>
@@ -187,7 +187,6 @@ require('lib/carthandle.php');
 			},
 			dataType: "text",
 			success: function(result) {
-				location.reload();
 				// alert(result);
 				res = result.split(",");
 				if (res[0] == "0") {
@@ -196,7 +195,6 @@ require('lib/carthandle.php');
 					swal("Success", res[1], "success");
 					// window.location = "viewcustomer.php";
 				}
-
 			},
 			error: function(eobj, etxt, err) {
 				console.log(etxt);
