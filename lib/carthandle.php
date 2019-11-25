@@ -1,6 +1,10 @@
 <?php
 require_once("dbconnection.php");
 
+if (isset($_GET["type"])) {
+	$type = $_GET["type"];
+	$type();
+}
 
 // get cart products start
 function getCart($cus_id)
@@ -70,7 +74,7 @@ function Total($cus_id)
 		exit;
 	}
 	$rec = $result->fetch_array();
-	echo ($rec[0]);
+	return ($rec[0]);
 	$conn->close();
 }
 
