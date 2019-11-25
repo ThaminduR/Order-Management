@@ -371,7 +371,7 @@ if (isset($cus_info)) {
 			</div>
 			<div class="card-body profileBody">
 				<div class="profilePic">
-					<img class="avatar" src="resources\image\pp.jpg" alt="Username">
+					<img class="avatar" src="resources\image\pp.jpg.png" alt="Username">
 				</div>
 				<div class="profileInfo">
 					<p>Role: Fullstack Developer</p>
