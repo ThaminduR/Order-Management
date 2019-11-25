@@ -12,7 +12,7 @@ session_start();
    }
 
    $usrname= $_POST['username'];
-   $pwd=$_POST['pass'];
+   $pwd=md5($_POST['pass']);
 
    $result = $conn->query("SELECT * FROM tbl_customer WHERE cus_uname='$usrname' AND password='$pwd'");
 

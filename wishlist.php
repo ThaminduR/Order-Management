@@ -3,62 +3,6 @@ include("common/header.php");
 require('lib/carthandle.php');
 ?>
 
-<<<<<<< HEAD
-<div class="content">
-
-    <div class="shopping-cart container-fluid">
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <?php if (!isset($cus_info)) {
-                    echo ("Please Login to add to wishlist !");
-                } ?>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">
-                                <h4>Wishlist <h4>
-                            </th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartdetails">
-                        <tr>
-                            <th scope="row"><a href="clothes.php">
-                                    <span class="fa fa-angle-left"></span>
-                                    continue shopping
-                                </a></th>
-
-                            <td height="75px"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-
-                            <td>Item</td>
-                            <td>Qty</td>
-                            <td>Price</td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-
-
-                        <?php
-                        if (isset($cus_info)) {
-                            $cus_id = $cus_info['cus_id'];
-                            getWish($cus_id);
-                        }
-                        ?>
-                        <input type="hidden" name="cus_id" id="cus_id" value="<?php echo ($cus_id) ?>">
-
-
-                    </tbody>
-                </table>
-
-
-=======
 <div class="header container-fluid">
     <div class="row">
         <div class="col-lg-6 col-md-4 col-sm-3">
@@ -192,7 +136,6 @@ require('lib/carthandle.php');
                 </table>
 
 
->>>>>>> parent of 7ef19ba... header redundancy
             </div>
         </div>
     </div>

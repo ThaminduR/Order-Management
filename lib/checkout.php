@@ -1,5 +1,6 @@
 <?php
 include("dbconnection.php");
+require('carthandle.php');
 
 $conn = DBConnection::connectDB();
 session_start();
@@ -82,13 +83,61 @@ $e_date =  date('Y-m-d', strtotime("+7 day"));
 $result4 = mysqli_query($conn, "INSERT INTO tbl_delivery(deli_id,order_id,deliver_person_id,deli_estimate_date) VALUES('$newid2','$newid','$del_per_id','$e_date')");
 
 //adding delivery status
-$sql5 = "INSERT INTO order_track()";
+$sql5 = "INSERT INTO tbl_order_track(deli_id,track_status,date) VALUES('$newid2','Dispatched','$date');";
+$result5 = mysqli_query($conn, $sql5);
+
+
+
+
+//invoice id generate
+$cdate = date("Y-m-d", time());
+$sql_ = "SELECT count(inv_id) FROM tbl_invoice WHERE inv_date='$cdate';";
+
+$result_ = $conn->query($sql_);
+
+if ($conn->errno) {
+    echo ("SQL Error : " . $conn->error);
+    exit;
+}
+$row = $result_->fetch_array();
+$count = $row[0];
+$count++;
+
+$newid_ = "INV" . str_replace("-", "", $cdate) . "_" . str_pad($count, 4, "0", STR_PAD_LEFT);
+
 
 //adding invoice
+$time = date("h:i:s", time());
+$gtot = Total($cus_id);
+echo ($gtot);
+$discount = '0'; //no discount
+$ntot = $gtot;
+$oper = 'Online';
 
+$sql_inv = "INSERT INTO tbl_invoice(inv_id,inv_date,inv_time,inv_gtot,inv_ntot,inv_discount,inv_operator) VALUES('$newid_','$date','$time','$gtot','$ntot','$discount','$oper');";
+$result_inv = mysqli_query($conn, $sql_inv);
 
+//reducing from stock
+$sql_st = "SELECT prod_id,qty FROM tbl_cart WHERE cus_id='$cus_id';";
+$result_st = mysqli_query($conn, $sql_st);
+$nor = $result_st->num_rows;
 
-
+if ($nor == 0) {
+    echo ("No Items Are selected ! ");
+    header("location:../cart.php");
+} else {
+    //Iterate through the cart and reduce items in batch table
+    for ($x = 0; $x <= $nor; $x++) {
+        $rec = $result_st->fetch_assoc();
+        $product_id = $rec['prod_id'];
+        $qty = $rec['qty'];
+        $result_tmp = mysqli_query($conn, "SELECT bat_qty_rem FROM tbl_batch WHERE prod_id='$product_id';");
+        $record = $result_tmp->fetch_assoc();
+        $amount = $record['bat_qty_rem'];
+        $new_am = $amount - $qty;
+        $result_final = mysqli_query($conn, "UPDATE tbl_batch SET bat_qty_rem = '$new_am' WHERE prod_id='$product_id';");
+    }
+}
 
 //emptying the cart of the user
 $result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");

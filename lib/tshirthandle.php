@@ -29,9 +29,11 @@ function ShowProducts(){
         $output.="<img src='$path' width='400' height='400' alt='".$rec["prod_name"]."'/>";
         $output.="<br>Qty:<input type='number' id='" . $rec['prod_id'] . "qty' min='1' max='" . $product_qty . "' value='1' length='2'/>";
         $output.="<br/>";
+        if($product_qty!=0){
         $output.="<br><button type='button' onclick=\"addCartItem('" . $rec['prod_id'] . "')\" class='btn btn-success'>Add to cart</button>";
         $output.="<br/>";
         $output.="<br><button type='button' onclick=\"addWishItem('" . $rec['prod_id'] . "')\" class='btn'>Add to Wishlist</button>";
+        }
     	$output.="</td>";
     	$i++;
     	if($i==2){
@@ -45,6 +47,3 @@ function ShowProducts(){
     	$conn->close();
     	return $output;
 }
-
-
-?>
