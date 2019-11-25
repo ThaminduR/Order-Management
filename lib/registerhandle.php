@@ -33,7 +33,7 @@ $mobile = $_POST['mobile'];
 $address = $_POST['address'];
 $email = $_POST['email'];
 $uname = $_POST['username'];
-$pass = $_POST['pass'];
+$pass = md5($_POST['pass']);
 $repass = $_POST['repass'];
 
 $result = mysqli_query($conn, "INSERT INTO tbl_customer(cus_id, cus_fname,cus_lname,cus_mobile,cus_address,cus_email,cus_uname,	password)VALUES ('$newid','$fname','$lname','$mobile','$address','$email','$uname','$pass')");
