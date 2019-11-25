@@ -9,7 +9,7 @@
 	<title>Stylish | World Desired Men's Store</title>
 
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="resources/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="resources/sweetalert/sweetalert2.css">
 
