@@ -9,7 +9,7 @@
 }
 
 .profile {
-    background-image: url("resources\image\logo.png");
+    /* background-image: url("resources\image\logo.png"); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -91,6 +91,7 @@
     transform: scale(0.8);
     transition: all .3s;
     cursor: pointer;
+    position: center;
 }
 
 .actionFirst:hover,
