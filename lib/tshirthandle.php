@@ -2,10 +2,10 @@
 //session_start();
 require_once("dbconnection.php");
 
-function ShowProducts($subcat)
+function ShowProducts($cat,$subcat)
 {
     $conn = DBConnection::connectDB();
-    $sql = "SELECT * FROM (tbl_product JOIN  tbl_pro_images ON tbl_product.prod_id=tbl_pro_images.prod_id) JOIN tbl_prod_details ON tbl_pro_images.prod_id=tbl_prod_details.prod_id WHERE tbl_prod_details.sub_cat_id='$subcat';";
+    $sql = "SELECT * FROM (tbl_product JOIN  tbl_pro_images ON tbl_product.prod_id=tbl_pro_images.prod_id) JOIN tbl_prod_details ON tbl_pro_images.prod_id=tbl_prod_details.prod_id WHERE tbl_prod_details.sub_cat_id='$subcat' AND tbl_pro_images.cat_id='$cat';";
     $result = $conn->query($sql);
 
     if ($conn->errno) {

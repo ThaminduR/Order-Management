@@ -149,6 +149,16 @@ if ($nor == 0) {
 $result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");
 echo ("Wait until processing is done");
 
+$to_email = "thamindu.randil@gmail.com";
+$subject = "Stylish Delivery";
+$body = "The order '$newid' has been assigned to you";
+$headers = "From: Stylish";
+
+if (mail($to_email, $subject, $body, $headers)) {
+    echo ("Email successfully sent to Delivery Person");
+} else {
+    echo ("Email sending failed ");
+}
 echo ("<br>");
 echo ("Done !");
 header("refresh:3;url=../index.php");

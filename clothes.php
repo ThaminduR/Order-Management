@@ -2,7 +2,7 @@
 if (isset($_GET["sub"])) {
 	$subcat = $_GET["sub"];
 } else {
-	$subcat = 'SUB00002';
+	$subcat = 'SUB00001';
 }
 
 require_once("common/header.php");
@@ -80,16 +80,14 @@ require('lib/carthandle.php');
 						</div>
 
 						<div class="dropdown">
-							<a class="dropbtn" href="shoese.php">SHOES</a>
+							<a class="dropbtn" href="shoes.php">SHOES</a>
 						</div>
 
 						<!-- <div class="dropdown">
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						<div class="dropdown">
-							<a class="dropbtn" href="bestseller.php">TOP SELLER</a>
-						</div>
+						
 
 					</div>
 
@@ -115,7 +113,7 @@ require('lib/carthandle.php');
 					</div>
 				</div>
 			</div>
-			<div class="left-content">
+			<!-- <div class="left-content">
 				<h3>Colors</h3>
 				<div class="left-content-sub">
 					<div class="ecommerce_color">
@@ -142,7 +140,7 @@ require('lib/carthandle.php');
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!-- </div> -->
 		<!-- </div>
@@ -151,8 +149,8 @@ require('lib/carthandle.php');
 			<div class="right-content-sub " data-wow-delay=".5s">
 				<!-- <img src="../Stylish/image/CAT00001/PRO00001/CAT00001_PRO00001_1570727079.jpg" class="w-100" /> -->
 				<?php
-				echo (ShowProducts($subcat));
-				
+				echo (ShowProducts('CAT00001', $subcat));
+
 				?>
 				<!-- x -->
 			</div>
