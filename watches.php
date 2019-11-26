@@ -108,9 +108,9 @@ require('lib/carthandle.php');
                 <div class="left-content-sub">
                     <div class="ecommerce_dres-type">
                         <ul>
-                            <li><a href="clothes.php?sub=SUB00004">Luxary Watches</a></li>
-                            <li><a href="clothes.php?sub=SUB00005">Digital Watches</a></li>
-                            <li><a href="clothes.php?sub=SUB00006">Smart Watches</a></li>
+                            <li><a href="watches.php?sub=SUB00004">Luxary Watches</a></li>
+                            <li><a href="watches.php?sub=SUB00005">Digital Watches</a></li>
+                            <li><a href="watches.php?sub=SUB00006">Smart Watches</a></li>
                         </ul>
                     </div>
                 </div>

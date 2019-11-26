@@ -106,7 +106,7 @@ require('lib/carthandle.php');
                 <div class="left-content-sub">
                     <div class="ecommerce_dres-type">
                         <ul>
-                            <li><a href="clothes.php?sub=SUB00007">Caps</a></li>
+                            <li><a href="sports.php?sub=SUB00007">Caps</a></li>
                         </ul>
                     </div>
                 </div>
