@@ -373,9 +373,9 @@ if (isset($cus_info)) {
 				<div class="profilePic">
 					<img class="avatar" src="resources\image\pp.jpg.png" alt="Username">
 				</div>
-				<div class="profileInfo">
-					<p>Role: Fullstack Developer</p>
-				</div>
+				<!-- <div class="profileInfo">
+					<p>Customer</p>
+				</div> -->
 			</div>
 			<div class="card-footer actions">
 				<!-- <div class="actionFirst">
@@ -384,7 +384,13 @@ if (isset($cus_info)) {
 					</svg> Chat
 				</div> -->
 				<div class="actionFirst mx-5">
-					 Order History
+					<div class="button"><button type="submit" href="page2.html">
+							<form method="get" action="/psage2">
+								Order History
+							</form>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
