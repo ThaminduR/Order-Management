@@ -384,11 +384,8 @@ if (isset($cus_info)) {
 					</svg> Chat
 				</div> -->
 				<div class="actionFirst mx-5">
-					<div class="button"><button type="submit" href="page2.html">
-							<form method="get" action="/psage2">
-								Order History
-							</form>
-
+					<div class="button">
+					<a href="orderhistory.php">Order History</a>
 					</div>
 
 				</div>
