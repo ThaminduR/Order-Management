@@ -99,3 +99,15 @@
     transform: scale(1);
     fill: #fff;
 }
+
+.button {
+    background-color: rgb(100, 100, 100);
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
