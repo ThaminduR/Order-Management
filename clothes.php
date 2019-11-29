@@ -1,6 +1,8 @@
 <?php
-if (isset($_GET["type"])) {
-	$subcat = $_GET["type"];
+if (isset($_GET["sub"])) {
+	$subcat = $_GET["sub"];
+} else {
+	$subcat = 'SUB00001';
 }
 
 require_once("common/header.php");
@@ -52,20 +54,20 @@ require('lib/carthandle.php');
 					<div class="main-menu">
 						<div class="dropdown">
 							<a class="dropbtn" href="clothes.php" class="active link">CLOTHES</a>
-							<div class="dropdown-content">
+							<!-- <div class="dropdown-content">
 								<a href="clothes.php?type=SUB00001">T-Shirt<? php ?></a>
 								<a href="clothes.php?type=SUB00002">Shirts</a>
 								<a href="clothes.php?type=tr">Trousers</a>
-							</div>
+							</div> -->
 						</div>
 
 						<div class="dropdown">
 							<a class="dropbtn" href="watches.php">WATCHES</a>
-							<div class="dropdown-content">
+							<!-- <div class="dropdown-content">
 								<a href="watches.php?brand=ti">Titan</a>
 								<a href="watches.php?brand=ci">Citizen</a>
 								<a href="watches.php?brand=ca">Casio</a>
-							</div>
+							</div> -->
 						</div>
 
 						<div class="dropdown">
@@ -78,16 +80,14 @@ require('lib/carthandle.php');
 						</div>
 
 						<div class="dropdown">
-							<a class="dropbtn" href="shoese.php">SHOES</a>
+							<a class="dropbtn" href="shoes.php">SHOES</a>
 						</div>
 
 						<!-- <div class="dropdown">
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						<div class="dropdown">
-							<a class="dropbtn" href="bestseller.php">TOP SELLER</a>
-						</div>
+						
 
 					</div>
 
@@ -106,14 +106,14 @@ require('lib/carthandle.php');
 				<div class="left-content-sub">
 					<div class="ecommerce_dres-type">
 						<ul>
-							<li><a href="clothes.php?type=ts">T-shirts</a></li>
-							<li><a href="clothes.php?type=sh">Shirts</a></li>
-							<li><a href="clothes.php?type=tr">Trousers</a></li>
+							<li><a href="clothes.php?sub=SUB00001">T-shirts</a></li>
+							<li><a href="clothes.php?sub=SUB00002">Shirts</a></li>
+							<li><a href="clothes.php?sub=SUB00003">Trousers</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="left-content">
+			<!-- <div class="left-content">
 				<h3>Colors</h3>
 				<div class="left-content-sub">
 					<div class="ecommerce_color">
@@ -140,7 +140,7 @@ require('lib/carthandle.php');
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!-- </div> -->
 		<!-- </div>
@@ -149,7 +149,8 @@ require('lib/carthandle.php');
 			<div class="right-content-sub " data-wow-delay=".5s">
 				<!-- <img src="../Stylish/image/CAT00001/PRO00001/CAT00001_PRO00001_1570727079.jpg" class="w-100" /> -->
 				<?php
-				echo (ShowProducts());
+				echo (ShowProducts('CAT00001', $subcat));
+
 				?>
 				<!-- x -->
 			</div>

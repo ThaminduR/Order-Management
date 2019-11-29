@@ -1,17 +1,5 @@
 <?php
 include("common/header.php");
-
-$to_email = "thamindu.randil@gmail.com";
-$subject = "Simple Email Test via PHP";
-$body = "Hi,nn This is test email send by PHP Script";
-$headers = "From: sender\'s email";
-
-if (mail($to_email, $subject, $body, $headers)) {
-	echo ("Email successfully sent to $to_email...");
-} else {
-	echo ("Email sending failed...");
-}
-
 ?>
 
 <div class="header container-fluid">
@@ -62,16 +50,14 @@ if (mail($to_email, $subject, $body, $headers)) {
 						</div>
 
 						<div class="dropdown">
-							<a class="dropbtn" href="shoese.php">SHOES</a>
+							<a class="dropbtn" href="shoes.php">SHOES</a>
 						</div>
 
 						<!-- <div class="dropdown">
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						<div class="dropdown">
-							<a class="dropbtn" href="bestseller.php">TOP SELLER</a>
-						</div>
+						
 
 					</div>
 

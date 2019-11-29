@@ -62,7 +62,7 @@ require('lib/carthandle.php');
                         </div>
 
                         <div class="dropdown">
-                            <a class="dropbtn" href="shoese.php">SHOES</a>
+                            <a class="dropbtn" href="shoes.php">SHOES</a>
                         </div>
 
                         <!-- <div class="dropdown">

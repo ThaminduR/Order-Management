@@ -71,16 +71,14 @@ require_once("lib/carthandle.php");
 						</div>
 
 						<div class="dropdown">
-							<a class="dropbtn" href="shoese.php">SHOES</a>
+							<a class="dropbtn" href="shoes.php">SHOES</a>
 						</div>
 
 						<!-- <div class="dropdown">
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						<div class="dropdown">
-							<a class="dropbtn" href="bestseller.php">TOP SELLER</a>
-						</div>
+						
 
 					</div>
 
@@ -147,7 +145,7 @@ require_once("lib/carthandle.php");
 				</a>
 			</div>
 			<div class="col-md-3 bb-grids bb-right-agileits-w3layouts">
-				<a href="shoese.php">
+				<a href="shoes.php">
 					<div class="bb-right-top">
 						<h3>SALE</h3>
 						<h4>upto<span>50%</span></h4>

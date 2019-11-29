@@ -74,7 +74,7 @@ require('lib/carthandle.php');
 							  </div> -->
 						</div>
 						<!-- 	<div class="dropdown">
-						  <a class="dropbtn" href="shoese.php">SHOESE</a>
+						  <a class="dropbtn" href="shoes.php">SHOESE</a>
 						</div> -->
 						<div class="dropdown">
 							<a class="dropbtn" href="topseller.php">TOP SELLER</a>
