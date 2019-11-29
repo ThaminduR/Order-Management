@@ -2,7 +2,7 @@
 if (isset($_GET["sub"])) {
     $subcat = $_GET["sub"];
 } else {
-    $subcat = 'SUB00001';
+    $subcat = 'SUB00008';
 }
 
 require_once("common/header.php");
