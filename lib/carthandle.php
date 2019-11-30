@@ -43,6 +43,25 @@ function getWish($cus_id)
 	}
 }
 
+function getOrder($cus_id)
+{
+    $conn = DBConnection::connectDB();
+
+    $sql = "SELECT order_id, order_dot,product_id,qty FROM (tbl_order NATURAL JOIN order_product) WHERE tbl_order.cus_id=$cus_id";;
+    $result = $conn->query($sql);
+    $output = "<tr value='order_id'></tr>";
+    $rows = $result->num_rows;
+    if ($rows > 0) {
+        while ($rec = $result->fetch_assoc()) {
+            $output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" .  $rec["product_id"] . "</td><td>" . $rec["qty"] . "</td></tr>";
+        }
+
+
+        echo $output;
+        $conn->close();
+    }
+}
+
 
 // Count all notification Start
 function CountCart($cus_id)
