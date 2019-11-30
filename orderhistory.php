@@ -55,7 +55,7 @@ require('lib/carthandle.php');
 
                             ?>
                         </a>
-                        <a href="wishlist.php">Wish List</a>
+                        <a href="wishlist.php">Order History</a>
 
                         <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                         <span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {
@@ -152,7 +152,7 @@ require('lib/carthandle.php');
                             <td>DoT</td>
                             <td>Product ID</td>
                             <td>Quantity</td>
-                            
+
 
                         </tr>
 
