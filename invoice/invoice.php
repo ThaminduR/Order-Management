@@ -5,7 +5,7 @@ require_once('tcpdf_include.php');
 // function orderReport()
 // {
 
-function genInvoice($total, $nor_cart, $results_cart)
+function genInvoice($total, $nor_cart, $results_cart, $order_id)
 {
     $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->SetCreator(PDF_CREATOR);
@@ -50,7 +50,7 @@ function genInvoice($total, $nor_cart, $results_cart)
     // Set some content to print
 
 
-    $content = Invoice($total, $nor_cart, $results_cart);
+    $content = Invoice($total, $nor_cart, $results_cart, $order_id);
     $pdf->AddPage();
     $pdf->writeHTML($content);
     ob_clean();
@@ -59,7 +59,7 @@ function genInvoice($total, $nor_cart, $results_cart)
 }
 
 
-function Invoice($total, $nor_cart, $results_cart)
+function Invoice($total, $nor_cart, $results_cart, $order_id)
 {
     $date  = date("Y-m-d");
     $output = '
@@ -122,23 +122,14 @@ function Invoice($total, $nor_cart, $results_cart)
     <body>
         <div class="container">
             <div class="inv-title">
-                <h1 class="no-margin">Invoice # 424773</h1>
+                <h1 class="no-margin">Order #' . $order_id . '</h1>
             </div>
             <div class="inv-header">
-                <div>
-                    <img src="ZAF.jpg" class="inv-logo">
-                    <h2>ABC Private Limited</h2>
-                    <ul>
-                        <li>Birmingom BS -435</li>
-                        <li>United Kingdom</li>
-                        <li>888-555-2311 | eadzhosting@gmail.com</li>
-                    </ul>
-                </div>
                 <div>
                     <table>
                         <tr>
                             <th>Issue Date</th>
-                            <td>12-02-2018</td>
+                            <td>' . $date . '</td>
                         </tr> 
                     </table>
                 </div>
@@ -152,7 +143,7 @@ function Invoice($total, $nor_cart, $results_cart)
 
     for ($x = 0; $x <= $nor_cart; $x++) {
         $rec = $results_cart->fetch_assoc();
-        $product_id = $rec['prod_id'];
+        $product_id = $rec['prod_name'];
         $qty = $rec['qty'];
         $price = $rec['price'];
         $output .= '
@@ -165,15 +156,12 @@ function Invoice($total, $nor_cart, $results_cart)
     }
 
     $output .= '
-                   </tbody>
-                </table>
-            </div>
-            <div class="inv-footer">
-                <table>
-                    <tr>
+    <tr>
                         <th>Total</th>
+                        <td></td>
                         <td>' . $total . '</td>
                         </tr>
+                   </tbody>
                 </table>
             </div>
         </div>

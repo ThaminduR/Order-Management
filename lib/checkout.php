@@ -13,7 +13,7 @@ session_start();
 if (!isset($_SESSION['cus_info'])) {
     header("location:../index.php");
 }
-header("refresh:3;url=../index.php");
+
 // Add order to order table
 
 $sql = "SELECT order_id FROM tbl_order ORDER BY order_id DESC LIMIT 1;";
@@ -39,10 +39,11 @@ $result2 = mysqli_query($conn, "INSERT INTO tbl_order(order_id,order_dot,cus_id)
 
 
 //Add details to the order_product table
-$sql2 = "SELECT prod_id,qty FROM tbl_cart WHERE cus_id='$cus_id';";
+$sql2 = "SELECT prod_id,qty,price FROM tbl_cart WHERE cus_id='$cus_id';";
+$sql2_c = "SELECT prod_name,qty,price FROM tbl_cart NATURAL JOIN tbl_product WHERE cus_id='$cus_id';";
 $results_cart = mysqli_query($conn, $sql2);
 $nor_cart = $results_cart->num_rows;
-$results_c = mysqli_query($conn, $sql2);
+$results_c = mysqli_query($conn, $sql2_c);
 if ($nor_cart == 0) {
     echo ("No Items Are selected ! ");
     header("location:../cart.php");
@@ -152,8 +153,8 @@ if ($nor == 0) {
 //emptying the cart of the user
 $result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");
 
-
-genInvoice($gtot, $nor_cart, $results_c);
+header("refresh:500;url=../index.php");
+genInvoice($gtot, $nor_cart, $results_c, $newid);
 
 $to_email = "thamindu.randil@gmail.com";
 $subject = "Stylish Delivery";
@@ -169,4 +170,3 @@ $headers = "From: Stylish";
 // echo ("<br>");
 // echo ("Done !");
 
-//header("refresh:3;url=../index.php");
