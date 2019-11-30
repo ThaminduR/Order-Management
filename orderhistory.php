@@ -138,7 +138,7 @@ include('lib/vieworderhistory.php');
                     <thead>
                         <tr>
                             <th scope="col">
-                                <h4>Wishlist <h4>
+                                <h4>Order History <h4>
                             </th>
                             <th scope="col"></th>
                             <th scope="col"></th>
