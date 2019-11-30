@@ -1,7 +1,7 @@
 <?php
 include('common/header.php');
 require('lib/carthandle.php');
-include('lib/vieworderhistory.php');
+// include('lib/vieworderhistory.php');
 ?>
 
 <head>
@@ -55,7 +55,7 @@ include('lib/vieworderhistory.php');
 
                             ?>
                         </a>
-                        <a href="wishlist.php">Order History</a>
+                        <a href="wishlist.php">Wish List</a>
 
                         <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                         <span class="badge badge-danger" id="cart-badge"><?php if (isset($cus_info)) {

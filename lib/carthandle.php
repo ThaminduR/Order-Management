@@ -47,7 +47,7 @@ function getOrder($cus_id)
 {
     $conn = DBConnection::connectDB();
 
-    $sql = "SELECT order_id, order_dot,product_id,qty FROM (tbl_order NATURAL JOIN order_product) WHERE tbl_order.cus_id=$cus_id";;
+    $sql = "SELECT order_id,order_dot,track_status FROM ordersview WHERE cus_id=$cus_id";;
     $result = $conn->query($sql);
     $output = "<tr value='order_id'></tr>";
     $rows = $result->num_rows;
