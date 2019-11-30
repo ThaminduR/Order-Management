@@ -77,33 +77,18 @@ require('lib/carthandle.php');
                     <div class="main-menu">
                         <div class="dropdown">
                             <a class="dropbtn" href="clothes.php">CLOTHES</a>
-                            <div class="dropdown-content">
-                                <a href="clothes.php?type=ts">T-Shirt</a>
-                                <a href="clothes.php?type=sh">Shirts</a>
-                                <a href="clothes.php?type=tr">Trousers</a>
-                            </div>
+
                         </div>
 
                         <div class="dropdown">
                             <a class="dropbtn" href="watches.php">WATCHES</a>
-                            <div class="dropdown-content">
-                                <a href="watches.php?brand=ti">Titan</a>
-                                <a href="watches.php?brand=ci">Citizen</a>
-                                <a href="watches.php?brand=ca">Casio</a>
-                            </div>
+
                         </div>
 
                         <div class="dropdown">
                             <a class="dropbtn" href="sports.php">ACCESSORIES</a>
-                            <!--  <div class="dropdown-content">
-							    <a href="sports.php?type=gt">Gifts and Tech</a>
-							    <a href="sports.php?type=th">Ties and Hats</a>
-							    <a href="sports.php?type=cw">Cold whether</a>
-							  </div> -->
+
                         </div>
-                        <!-- 	<div class="dropdown">
-						  <a class="dropbtn" href="shoes.php">SHOESE</a>
-						</div> -->
                         <div class="dropdown">
                             <a class="dropbtn" href="topseller.php">TOP SELLER</a>
                         </div>
@@ -149,8 +134,8 @@ require('lib/carthandle.php');
 
                             <td>ORDER ID</td>
                             <td>DoT</td>
-                            <td>Product ID</td>
-                            <td>Quantity</td>
+                            <td>Track Status</td>
+
 
 
                         </tr>

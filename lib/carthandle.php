@@ -45,21 +45,21 @@ function getWish($cus_id)
 
 function getOrder($cus_id)
 {
-    $conn = DBConnection::connectDB();
+	$conn = DBConnection::connectDB();
 
-    $sql = "SELECT order_id,order_dot,track_status FROM ordersview WHERE cus_id=$cus_id";;
-    $result = $conn->query($sql);
-    $output = "<tr value='order_id'></tr>";
-    //  $rows = $result->num_rows;
-    if ($result = $conn->query($sql)) {
-        while ($rec = $result->fetch_assoc()) {
-            $output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" .  $rec["product_id"] . "</td><td>" . $rec["qty"] . "</td></tr>";
-        }
+	$sql = "SELECT order_id,order_dot,track_status FROM ordersview WHERE cus_id='$cus_id'";;
+	$result = mysqli_query($conn, $sql);
+	$output = "<tr value='order_id'></tr>";
+	$rows = $result->num_rows;
+	if ($rows > 0) {
+		while ($rec = $result->fetch_assoc()) {
+			$output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" . $rec["track_status"] . "</td></tr>";
+		}
 
 
-        echo $output;
-        $conn->close();
-    }
+		echo $output;
+		$conn->close();
+	}
 }
 
 
