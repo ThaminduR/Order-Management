@@ -50,8 +50,8 @@ function getOrder($cus_id)
     $sql = "SELECT order_id,order_dot,track_status FROM ordersview WHERE cus_id=$cus_id";;
     $result = $conn->query($sql);
     $output = "<tr value='order_id'></tr>";
-    $rows = $result->num_rows;
-    if ($rows > 0) {
+    //  $rows = $result->num_rows;
+    if ($result = $conn->query($sql)) {
         while ($rec = $result->fetch_assoc()) {
             $output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" .  $rec["product_id"] . "</td><td>" . $rec["qty"] . "</td></tr>";
         }

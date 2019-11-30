@@ -1,7 +1,6 @@
 <?php
 include('common/header.php');
 require('lib/carthandle.php');
-// include('lib/vieworderhistory.php');
 ?>
 
 <head>
