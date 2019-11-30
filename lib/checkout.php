@@ -1,6 +1,9 @@
 <?php
+
+
 include("dbconnection.php");
 require('carthandle.php');
+require('../invoice/invoice.php');
 
 $conn = DBConnection::connectDB();
 session_start();
@@ -10,7 +13,7 @@ session_start();
 if (!isset($_SESSION['cus_info'])) {
     header("location:../index.php");
 }
-
+header("refresh:3;url=../index.php");
 // Add order to order table
 
 $sql = "SELECT order_id FROM tbl_order ORDER BY order_id DESC LIMIT 1;";
@@ -37,16 +40,16 @@ $result2 = mysqli_query($conn, "INSERT INTO tbl_order(order_id,order_dot,cus_id)
 
 //Add details to the order_product table
 $sql2 = "SELECT prod_id,qty FROM tbl_cart WHERE cus_id='$cus_id';";
-$results = mysqli_query($conn, $sql2);
-$nor = $results->num_rows;
-
-if ($nor == 0) {
+$results_cart = mysqli_query($conn, $sql2);
+$nor_cart = $results_cart->num_rows;
+$results_c = mysqli_query($conn, $sql2);
+if ($nor_cart == 0) {
     echo ("No Items Are selected ! ");
     header("location:../cart.php");
 } else {
     //Iterate through the cart and add items to the order_product table
-    for ($x = 0; $x <= $nor; $x++) {
-        $rec = $results->fetch_assoc();
+    for ($x = 0; $x <= $nor_cart; $x++) {
+        $rec = $results_cart->fetch_assoc();
         $product_id = $rec['prod_id'];
         $qty = $rec['qty'];
         $result3 = mysqli_query($conn, "INSERT INTO order_product(order_id,product_id,qty) VALUES('$newid','$product_id','$qty');");
@@ -145,20 +148,25 @@ if ($nor == 0) {
     }
 }
 
+
 //emptying the cart of the user
 $result1 = mysqli_query($conn, "DELETE FROM tbl_cart WHERE cus_id='$cus_id';");
-echo ("Wait until processing is done");
+
+
+genInvoice($gtot, $nor_cart, $results_c);
 
 $to_email = "thamindu.randil@gmail.com";
 $subject = "Stylish Delivery";
 $body = "The order '$newid' has been assigned to you";
 $headers = "From: Stylish";
 
-if (mail($to_email, $subject, $body, $headers)) {
-    echo ("Email successfully sent to Delivery Person");
-} else {
-    echo ("Email sending failed ");
-}
-echo ("<br>");
-echo ("Done !");
-header("refresh:3;url=../index.php");
+// if (mail($to_email, $subject, $body, $headers)) {
+//     echo ("Email successfully sent to Delivery Person");
+// } else {
+//     echo ("Email sending failed ");
+// }
+// echo ("Wait until processing is done");
+// echo ("<br>");
+// echo ("Done !");
+
+//header("refresh:3;url=../index.php");
