@@ -78,7 +78,7 @@ require('lib/carthandle.php');
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						
+
 
 					</div>
 
@@ -164,9 +164,9 @@ require('lib/carthandle.php');
 							</td>
 							<td>
 								<!-- Button to checkout the cart -->
-
-								<button type='button' onclick='document.location.href="lib/checkout.php"' class='btn btn-success'>Check Out</button>
-
+								<form action='lib/checkout.php' method='GET'>
+									<button type='submit' class='btn btn-success'>Check Out</button></form>
+								<!-- onclick='document.location.href="lib/checkout.php"' -->
 
 							</td>
 							<td></td>
@@ -204,7 +204,7 @@ require('lib/carthandle.php');
 					icon: "success",
 					text: "Item removed sucsessfully !",
 				});
-				setTimeout(location.reload(),1000);
+				setTimeout(location.reload(), 1000);
 
 				// alert(result);
 				res = result.split(",");

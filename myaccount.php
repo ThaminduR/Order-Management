@@ -146,7 +146,7 @@ if (!(isset($cus_info))) {
 								<label>Password</label>
 								<input type="Password" name="pass" id="pass" placeholder="enter your Password" />
 								<span id="errpass" name="errpass" style="color: red"></span>
-								<a href="fogotpass.php">Forgot Password</a>
+								<a href="passwordRecovery/enteremail.php">Forgot Password</a>
 							</div>
 							<div class="clearfix">&nbsp;</div>
 							<div align="right">
@@ -385,7 +385,7 @@ if (isset($cus_info)) {
 				</div> -->
 				<div class="actionFirst mx-5">
 					<div class="button">
-					<a href="orderhistory.php">Order History</a>
+						<a href="orderhistory.php">Order History</a>
 					</div>
 
 				</div>

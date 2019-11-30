@@ -87,7 +87,7 @@ require('lib/carthandle.php');
 						  <a class="dropbtn" href="topseller.php">CAPS</a>
 						</div> -->
 
-						
+
 
 					</div>
 
@@ -102,6 +102,7 @@ require('lib/carthandle.php');
 	<div class="row">
 		<div class="col-lg-4 col-md-3 col-sm-2">
 			<div class="left-content">
+
 				<h3>Categories</h3>
 				<div class="left-content-sub">
 					<div class="ecommerce_dres-type">
