@@ -54,38 +54,23 @@ require('lib/carthandle.php');
                     <div class="main-menu">
                         <div class="dropdown">
                             <a class="dropbtn" href="clothes.php" class="active link">CLOTHES</a>
-                            <!-- <div class="dropdown-content">
-								<a href="clothes.php?type=SUB00001">T-Shirt<? php ?></a>
-								<a href="clothes.php?type=SUB00002">Shirts</a>
-								<a href="clothes.php?type=tr">Trousers</a>
-							</div> -->
+
                         </div>
 
                         <div class="dropdown">
                             <a class="dropbtn" href="watches.php">WATCHES</a>
-                            <!-- <div class="dropdown-content">
-								<a href="watches.php?brand=ti">Titan</a>
-								<a href="watches.php?brand=ci">Citizen</a>
-								<a href="watches.php?brand=ca">Casio</a>
-							</div> -->
+
                         </div>
 
                         <div class="dropdown">
                             <a class="dropbtn" href="sports.php">ACCESSORIES</a>
-                            <!-- <div class="dropdown-content">
-							    <a href="sports.php?type=gt">Gifts and Tech</a>
-							    <a href="sports.php?type=th">Ties and Hats</a>
-							    <a href="sports.php?type=cw">Cold whether</a>
-							  </div> -->
+
                         </div>
 
                         <div class="dropdown">
                             <a class="dropbtn" href="shoes.php">SHOES</a>
                         </div>
 
-                        <!-- <div class="dropdown">
-						  <a class="dropbtn" href="topseller.php">CAPS</a>
-						</div> -->
 
 
 
