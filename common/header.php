@@ -20,5 +20,6 @@
 	<script type="text/javascript" src="resources/jquery/jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="resources/sweetalert/sweetalert2.all.js"></script>
+	<script src="../dataTables/datatables.min.js"></script>
 </head>
 <body>

@@ -53,7 +53,7 @@ function getOrder($cus_id)
 	$rows = $result->num_rows;
 	if ($rows > 0) {
 		while ($rec = $result->fetch_assoc()) {
-			$output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" . $rec["track_status"] ."</td><td>" . $rec["deli_estimate_date"]."</td><td>" . $rec["feedback"]. "</td></tr>";
+			$output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" . $rec["track_status"] ."</td><td>" . $rec["deli_estimate_date"]."</td><td>" . $rec["feedback"]. "</td><td><input id='feedback'></input><button onclick=sendfb('" . $rec["order_id"]. "," . $rec["feedback"]. "')>Submit</button></td></tr>";
 		}
 
 
@@ -62,11 +62,12 @@ function getOrder($cus_id)
 	}
 }
 
-function updateFeedback($feedback)
+function updateFeedback()
 {
-    $conn = DB::connectDB();
-    $order_id = $_POST['order'];
-    $sql = "UPDATE tbl_order JOIN tbl_order_track NATURAL JOIN tbl_delivery SET feedback = '$feedback' WHERE order_id='$order_id'";;
+	$conn = DBConnection::connectDB();
+	$feedback=$_POST['feedback'];
+    $order_id = $_POST['order_id'];
+    $sql = "UPDATE tbl_order  SET feedback = '$feedback' WHERE order_id='$order_id'";;
     $result = $conn->query($sql);
 
 }

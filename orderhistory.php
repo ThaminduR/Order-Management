@@ -102,36 +102,7 @@ require('lib/carthandle.php');
 </div>
 
 
-<script>
- 
-    $('#tblvieword').on('click', 'button', function() {
-      var data = dataTable.row($(this).parents('tr')).data();
-      var order = data[0];
-      $.ajax({
-        method: "POST",
-        url: "lib/carthandle.php?type=updateFeedback",
-        data: {
-          order: order,
-          feedback:
-        },
-        dataType: "text",
-        success: function(result) {
-          
-          setTimeout(location.reload(), 1000);
-        },
-        error: function(eobj, etxt, err) {
-          console.log(etxt);
-        }
-      });
-    });
 
-    $('#sidebarCollapse').on('click', function() {
-      $('#sidebar').toggleClass('active');
-    });
-
-
-  });
-</script> -->
 
 
 <!-- User Table Start-->
@@ -162,6 +133,7 @@ require('lib/carthandle.php');
                             <td>Track Status</td>
                             <td>Estimated Delivery</td>
                             <td>Feedback</td>
+                            <td>Give a Feedback</td>
 
 
 
@@ -185,7 +157,32 @@ require('lib/carthandle.php');
         </div>
     </div>
 </div>
+<script>
+    function sendfb(order_id,oldfb) {
+        console.log(oldfb);
 
+        var feedback = $("#feedback").val();
+        if (oldfb == "" || oldfb == null) {
+
+            $.ajax({
+                "method": "POST",
+                url: "lib/carthandle.php?type=updateFeedback",
+                "data": {
+                    "order_id": order_id,
+                    "feedback": feedback
+                },
+                dataType: "text",
+                // success: function(result) {
+
+                //     setTimeout(location.reload(), 1000);
+                // },
+                error: function(eobj, etxt, err) {
+                    console.log(etxt);
+                }
+            });
+        }
+    }
+</script> -->
 <?php
 include("common/footer.php");
 ?>
