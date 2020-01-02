@@ -50,10 +50,11 @@ function getOrder($cus_id)
 	$sql = "SELECT order_id,order_dot,track_status,deli_estimate_date,feedback FROM tbl_order JOIN tbl_order_track NATURAL JOIN tbl_delivery WHERE cus_id='$cus_id'";;
 	$result = mysqli_query($conn, $sql);
 	$output = "<tr value='order_id'></tr>";
+	
 	$rows = $result->num_rows;
 	if ($rows > 0) {
 		while ($rec = $result->fetch_assoc()) {
-			$output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" . $rec["track_status"] ."</td><td>" . $rec["deli_estimate_date"]."</td><td>" . $rec["feedback"]. "</td><td><input id='feedback'></input><button onclick=sendfb('" . $rec["order_id"]. "," . $rec["feedback"]. "')>Submit</button></td></tr>";
+			$output .= "<tr><td>" . $rec["order_id"] . "</td><td>" . $rec["order_dot"] . "</td><td>" . $rec["track_status"] ."</td><td>" . $rec["deli_estimate_date"]."</td><td>" . $rec["feedback"]. "</td><td><input id='feedback'></input><button onclick=sendfb('" . $rec["order_id"]. "','" . $rec["feedback"]. "')>Submit</button></td></tr>";
 		}
 
 
@@ -66,8 +67,8 @@ function updateFeedback()
 {
 	$conn = DBConnection::connectDB();
 	$feedback=$_POST['feedback'];
-    $order_id = $_POST['order_id'];
-    $sql = "UPDATE tbl_order  SET feedback = '$feedback' WHERE order_id='$order_id'";;
+	$order_id = $_POST['order_id'];
+    $sql = "UPDATE tbl_order  SET feedback = '$feedback' WHERE order_id='$order_id';";
     $result = $conn->query($sql);
 
 }
@@ -79,6 +80,11 @@ function CountCart($cus_id)
 	// $cusid=$_POST['cus_id']
 	$table = 'tbl_cart';
 	$sql = "SELECT  count(*) FROM $table WHERE cus_id='$cus_id';";
+	try {
+		$sql = "SELECT  count(*) FROM $table WHERE cus_id='$cus_id';";
+	} catch (\Throwable $th) {
+		throw $th;
+	}
 	$result = $conn->query($sql);
 
 	if ($conn->errno) {

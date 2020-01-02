@@ -159,10 +159,9 @@ require('lib/carthandle.php');
 </div>
 <script>
     function sendfb(order_id,oldfb) {
-        console.log(oldfb);
 
         var feedback = $("#feedback").val();
-        if (oldfb == "" || oldfb == null) {
+        // if (oldfb == "" || oldfb == null) {
 
             $.ajax({
                 "method": "POST",
@@ -180,7 +179,7 @@ require('lib/carthandle.php');
                     console.log(etxt);
                 }
             });
-        }
+        // }
     }
 </script> -->
 <?php
